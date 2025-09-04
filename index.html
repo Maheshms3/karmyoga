@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karmyog – Your Path of Abhyāsa</title>
+  <link rel="canonical" href="https://karmyog.life/" />
+  <meta name="description" content="Turn your daily actions into sādhanā. Karmyog helps you practice Abhyāsa, align Karma, offer Yajña, and live with Sātatya—beautifully and simply." />
+
+  <!-- PWA -->
+  <meta name="theme-color" content="#0b1220" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192x192.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Karmyog – Your Path of Abhyāsa" />
+  <meta property="og:description" content="Transform your routine into a spiritual practice inspired by the Bhagavad Gītā." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://karmyog.life/" />
+  <meta property="og:image" content="https://karmyog.life/og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            karmyog: {
+              50:'#F7F6F3',100:'#EEE9E2',200:'#E3D7C9',300:'#D4C0AA',400:'#BCA188',
+              500:'#9D7E63',600:'#7D634C',700:'#5E4B3A',800:'#3A3025',900:'#211B15',950:'#0b1220'
+            },
+            sun_primary:'#FF8C42', sun_secondary:'#FFB800', sun_leaf:'#609966',
+            sun_text_dark:'#3d2e24', sun_text_light:'#f6efe7'
+          },
+          boxShadow: {
+            glow: '0 0 40px -10px rgba(255, 184, 0, 0.35)',
+            glass: '0 10px 30px -10px rgba(0,0,0,.35)'
+          },
+          backdropBlur: { xs: '2px' },
+          keyframes: {
+            float: { '0%,100%': { transform:'translateY(0)' }, '50%': { transform:'translateY(-6px)' } },
+            breathe: { '0%,100%': { transform: 'scale(1)' }, '50%': { transform: 'scale(1.08)' } },
+            fadeUp: { '0%': { opacity:0, transform:'translateY(18px)' }, '100%': { opacity:1, transform:'translateY(0)' } },
+          },
+          animation: {
+            float: 'float 5s ease-in-out infinite',
+            breathe: 'breathe 6s ease-in-out infinite',
+            fadeUp: 'fadeUp .8s ease-out forwards'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Fonts / Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <style>
+    /* Cosmic gradient + halo */
+    .bg-aura {
+      background:
+        radial-gradient(1200px 600px at 50% -10%, rgba(255,184,0,.18), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(255,140,66,.12), transparent 50%),
+        radial-gradient(600px 400px at 10% 10%, rgba(96,153,102,.12), transparent 50%),
+        linear-gradient(180deg, #F7F6F3 0%, #EEE9E2 30%, #F7F6F3 100%);
+    }
+    .dark .bg-aura {
+      background:
+        radial-gradient(1400px 700px at 50% -10%, rgba(255,184,0,.12), transparent 60%),
+        radial-gradient(900px 600px at 90% 10%, rgba(255,140,66,.10), transparent 55%),
+        radial-gradient(700px 500px at 10% 10%, rgba(96,153,102,.10), transparent 55%),
+        linear-gradient(180deg, #0b1220 0%, #151c2b 35%, #0b1220 100%);
+    }
+
+    /* Glass */
+    .glass {
+      background: rgba(255,255,255,.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.35);
+      box-shadow: var(--tw-shadow);
+    }
+    .dark .glass {
+      background: rgba(18, 24, 38, .45);
+      border-color: rgba(255,255,255,.08);
+    }
+
+    /* Sunrise ring behind logo */
+    .sunring::before{
+      content:'';
+      position:absolute; inset:-18px;
+      border-radius:9999px;
+      background: conic-gradient(from 180deg, #FFB80033, #FF8C4233, transparent 55%, #60996622, #FFB80033);
+      filter: blur(12px);
+      z-index:-1;
+    }
+
+    /* Reduced motion respect */
+    @media (prefers-reduced-motion: reduce) {
+      .animate-float, .animate-breathe, .animate-fadeUp { animation: none !important; }
+    }
+  </style>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"Karmyog",
+    "applicationCategory":"ProductivityApplication",
+    "operatingSystem":"Android, iOS, Web",
+    "description":"A spiritual practice app to align daily actions with the Bhagavad Gītā.",
+    "url":"https://karmyog.life/"
+  }
+  </script>
+</head>
+
+<body class="bg-karmyog-50 dark:bg-karmyog-950 text-sun_text_dark dark:text-sun_text_light font-sans leading-relaxed">
+
+  <!-- Top Bar -->
+  <nav class="sticky top-0 z-40 backdrop-blur-md bg-white/70 dark:bg-karmyog-900/60 border-b border-black/5 dark:border-white/10">
+    <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3 group">
+        <span class="relative sunring inline-flex items-center justify-center w-9 h-9 rounded-full shadow-glow">
+          <i class="fa-solid fa-om text-sun_primary"></i>
+        </span>
+        <span class="font-bold tracking-tight text-xl">
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-sun_secondary via-sun_primary to-sun_leaf">Karmyog</span>
+        </span>
+      </a>
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" class="glass shadow-glass px-3 py-1.5 rounded-full text-sm" aria-label="Toggle dark mode">
+          <i class="fa-solid fa-moon"></i> <span class="ml-2 hidden sm:inline">Mode</span>
+        </button>
+        <a href="https://karmyog.life/" class="hidden sm:inline-block bg-sun_primary hover:bg-sun_secondary text-white font-semibold py-2 px-5 rounded-full transition transform hover:scale-105 shadow-glow" aria-label="Visit Karmyog App">
+          Start
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header & Hero -->
+  <header id="home" class="bg-aura">
+    <div class="max-w-5xl mx-auto px-6 py-16 md:py-24 text-center">
+      <div class="inline-flex items-center gap-4 animate-fadeUp">
+        <div class="relative sunring animate-float">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center shadow-glow">
+            <i class="fa-solid fa-om text-4xl text-sun_primary"></i>
+          </div>
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight">
+          Karmyog
+        </h1>
+      </div>
+
+      <p class="mt-4 text-sm opacity-80">अभ्यास • कर्म • यज्ञ • सातत्य</p>
+
+      <h2 class="mt-6 text-xl sm:text-2xl max-w-2xl mx-auto animate-fadeUp" style="animation-delay:.15s">
+        Turn your daily actions into <span class="font-semibold">sādhanā</span>.
+      </h2>
+      <p class="mt-4 max-w-2xl mx-auto animate-fadeUp" style="animation-delay:.3s">
+        A serene, modern PWA that helps you find purpose, build consistency, and offer every deed—big or small—into a sacred flow inspired by the Bhagavad Gītā.
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fadeUp" style="animation-delay:.45s">
+        <a href="https://karmyog.life/" class="inline-flex items-center bg-sun_primary hover:bg-sun_secondary text-white font-semibold py-3 px-8 rounded-full transition transform hover:scale-105 shadow-glow">
+          <i class="fa-solid fa-fire-flame-simple mr-2"></i> Begin Practice
+        </a>
+        <button id="installBtn" class="inline-flex items-center glass shadow-glass px-6 py-3 rounded-full">
+          <i class="fa-solid fa-download mr-2"></i> Add to Home Screen
+        </button>
+      </div>
+
+      <!-- Micro practice: Breathing orb -->
+      <div class="mt-10">
+        <button id="breatheBtn" class="mx-auto block w-28 h-28 rounded-full border border-black/10 dark:border-white/10 animate-breathe shadow-glow" aria-label="Guided breath">
+          <span class="sr-only">Breathe with the circle</span>
+        </button>
+        <p class="mt-3 text-xs opacity-70">Inhale as the circle expands, exhale as it softens.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Philosophy -->
+  <section class="py-14 md:py-18 bg-karmyog-50 dark:bg-karmyog-900">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h3 class="text-3xl sm:text-4xl font-bold">Principles of Karmyog</h3>
+        <p class="mt-4 opacity-80 max-w-2xl mx-auto">Timeless insight, lovingly adapted for our modern lives.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Abhyāsa -->
+        <article class="glass rounded-2xl p-7 shadow-glass animate-fadeUp">
+          <div class="w-16 h-16 rounded-full bg-white/60 dark:bg-white/5 flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-seedling text-2xl text-sun_leaf"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center">Abhyāsa (Practice)</h4>
+          <p class="mt-2 text-center opacity-85 text-sm">Create living domains—Health, Svādhyāya (Self-Study), Seva—then show up gently, every day.</p>
+        </article>
+
+        <!-- Karma / Vikarma -->
+        <article class="glass rounded-2xl p-7 shadow-glass animate-fadeUp" style="animation-delay:.15s">
+          <div class="w-16 h-16 rounded-full bg-white/60 dark:bg-white/5 flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-scale-balanced text-2xl text-sun_primary"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center">Karma &amp; Vikarma</h4>
+          <p class="mt-2 text-center opacity-85 text-sm">Choose actions that nourish (Karma) and release habits that cloud (Vikarma)—with kindness, not judgment.</p>
+        </article>
+
+        <!-- Yajña -->
+        <article class="glass rounded-2xl p-7 shadow-glass animate-fadeUp">
+          <div class="w-16 h-16 rounded-full bg-white/60 dark:bg-white/5 flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-fire text-2xl text-sun_primary"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center">Yajña (Offering)</h4>
+          <p class="mt-2 text-center opacity-85 text-sm">Mark tasks complete by symbolically offering them to the inner fire—turning work into worship.</p>
+        </article>
+
+        <!-- Sātatya -->
+        <article class="glass rounded-2xl p-7 shadow-glass animate-fadeUp" style="animation-delay:.15s">
+          <div class="w-16 h-16 rounded-full bg-white/60 dark:bg-white/5 flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-link text-2xl text-sun_primary"></i>
+          </div>
+          <h4 class="text-xl font-bold text-center">Sātatya (Consistency)</h4>
+          <p class="mt-2 text-center opacity-85 text-sm">Celebrate streaks for each practice—steady steps become sacred momentum.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gītā Quote -->
+  <section class="py-14 md:py-18 bg-karmyog-100 dark:bg-karmyog-950 text-center">
+    <div class="max-w-3xl mx-auto px-6">
+      <i class="fas fa-quote-left text-3xl text-sun_primary"></i>
+      <blockquote class="mt-4">
+        <p id="gita-quote" class="text-lg sm:text-xl font-medium italic"></p>
+        <button id="toggleLang" class="mt-3 text-xs underline opacity-75">Show Sanskrit</button>
+        <p id="gita-sanskrit" class="mt-2 text-sm opacity-80 hidden"></p>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="py-14 md:py-18 bg-karmyog-50 dark:bg-karmyog-900">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h3 class="text-3xl sm:text-4xl font-bold">Key Features</h3>
+        <p class="mt-4 opacity-80 max-w-xl mx-auto">Quietly powerful tools for your inner work.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div class="flex items-start gap-4 animate-fadeUp">
+          <div class="w-14 h-14 rounded-xl glass shadow-glass flex items-center justify-center shrink-0">
+            <i class="fas fa-microphone text-xl text-sun_primary"></i>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold">Voice-Powered Diary</h4>
+            <p class="opacity-85">Capture reflections in the moment; the app transcribes and safely stores them for you.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4 animate-fadeUp" style="animation-delay:.1s">
+          <div class="w-14 h-14 rounded-xl glass shadow-glass flex items-center justify-center shrink-0">
+            <i class="fas fa-bell text-xl text-sun_primary"></i>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold">Smart Reminders</h4>
+            <p class="opacity-85">Gentle nudges aligned to your rhythms—never noisy, always kind.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4 animate-fadeUp">
+          <div class="w-14 h-14 rounded-xl glass shadow-glass flex items-center justify-center shrink-0">
+            <i class="fas fa-star text-xl text-sun_secondary"></i>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold">Milestone Badges</h4>
+            <p class="opacity-85">Sacred-inspired badges mark your journey without turning it into a race.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4 animate-fadeUp" style="animation-delay:.1s">
+          <div class="w-14 h-14 rounded-xl glass shadow-glass flex items-center justify-center shrink-0">
+            <i class="fas fa-lock text-xl text-sun_primary"></i>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold">Private &amp; Secure</h4>
+            <p class="opacity-85">Your practice is yours alone—encrypted and in your account.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-14 md:py-18 bg-karmyog-100 dark:bg-karmyog-950 text-center">
+    <div class="max-w-4xl mx-auto px-6">
+      <h3 class="text-3xl sm:text-4xl font-bold">Ready to begin your journey?</h3>
+      <p class="mt-4 max-w-xl mx-auto opacity-85">
+        Install the app and let everyday tasks become sacred gestures.
+      </p>
+      <div class="mt-8">
+        <button id="installBtnFooter" class="bg-sun_primary hover:bg-sun_secondary text-white font-semibold py-3 px-8 sm:py-4 sm:px-12 rounded-full shadow-glow transition transform hover:scale-105">
+          <i class="fas fa-download mr-2"></i> Add to Home Screen
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-8 text-center text-sm opacity-75">
+    <p>&copy; 2025 Karmyog. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // --- Theme: persist & toggle ---
+    const userPref = localStorage.getItem('theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (userPref === 'dark' || (!userPref && systemDark)) document.documentElement.classList.add('dark');
+
+    document.getElementById('themeToggle')?.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // --- PWA Install handling (top + footer buttons) ---
+    const installButtons = [document.getElementById('installBtn'), document.getElementById('installBtnFooter')].filter(Boolean);
+    let deferredPrompt;
+
+    installButtons.forEach(btn => btn?.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      } else {
+        window.location.href = "https://karmyog.life/";
+      }
+    }));
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installButtons.forEach(btn => btn?.classList.remove('hidden'));
+    });
+
+    window.addEventListener('appinstalled', () => {
+      deferredPrompt = null;
+      installButtons.forEach(btn => {
+        btn.textContent = 'Installed!';
+        btn.disabled = true;
+      });
+    });
+
+    // --- Gītā quotes (Eng + Sanskrit) ---
+    const quotes = [
+      {
+        en: 'You have a right to perform your prescribed duties, but not to the fruits of action. — 2.47',
+        sa: 'कर्मण्येवाधिकारस्ते मा फलेषु कदाचन — २.४७'
+      },
+      {
+        en: 'Perform your duty, for action is better than inaction. — 3.8',
+        sa: 'नियतं कुरु कर्म त्वं कर्म ज्यायो ह्यकर्मणः — ३.८'
+      },
+      {
+        en: 'The wise see inaction in action, and action in inaction. — 4.18',
+        sa: 'कर्मण्यकर्म यः पश्येदकर्मणि च कर्म यः — ४.१८'
+      },
+      {
+        en: 'Act without attachment, offering the results to the Supreme. — 5.10',
+        sa: 'ब्रह्मण्याधाय कर्माणि सङ्गं त्यक्त्वा करोति यः — ५.१०'
+      },
+      {
+        en: 'Better to follow your own path imperfectly than another’s perfectly. — 3.35',
+        sa: 'श्रेयान् स्वधर्मो विगुणः परधर्मात्स्वनुष्ठितात् — ३.३५'
+      }
+    ];
+    const q = quotes[Math.floor(Math.random() * quotes.length)];
+    const elEn = document.getElementById('gita-quote');
+    const elSa = document.getElementById('gita-sanskrit');
+    const toggleLang = document.getElementById('toggleLang');
+    elEn.textContent = `"${q.en}"`;
+    elSa.textContent = q.sa;
+
+    toggleLang?.addEventListener('click', () => {
+      const hidden = elSa.classList.toggle('hidden');
+      toggleLang.textContent = hidden ? 'Show Sanskrit' : 'Hide Sanskrit';
+    });
+
+    // --- Breathing orb accessibility toggle ---
+    const breatheBtn = document.getElementById('breatheBtn');
+    let breathing = true;
+    breatheBtn?.addEventListener('click', () => {
+      breathing = !breathing;
+      breatheBtn.style.animationPlayState = breathing ? 'running' : 'paused';
+    });
+  </script>
+</body>
+</html>
+
